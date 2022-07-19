@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://pixabay.com/api';
-const apiKey = '28430104-64039a230ce7799bb0faf758d';
+const KEY = '60778458bdbdfa7e14ca7e73fe4a1fef';
 
-const fetchImg = ({ searchQuery, currentPage = 1 }) => {
+const fetchImg = () => {
   return axios
     .get(
-      `/?q=${searchQuery}&page=${currentPage}&key=${apiKey}&image_type=photo&orientation=horizontal&per_page=12`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`
     )
-    .then(res => res.data.hits);
+    .then(res => res.data)
+    .then(console.log);
 };
 
 export default fetchImg;

@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.27.2",
     "eslint": "^8.20.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
