@@ -9,6 +9,7 @@
 
 .container {
   max-width: 1170px;
+  min-height: 85vh;
   margin: 0 auto;
   padding: 0 15px;
 }

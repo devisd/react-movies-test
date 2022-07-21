@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from './LayoutContainer';
+import Layout from './Layout';
 import HomePage from './HomePage';
-// import MovieDetailsPage from './MovieDetailsPage';
+import MovieDetailsPage from './MovieDetailsPage';
 import MoviesPage from './MoviesPage';
 import About from './About';
 import NotFoundPage from './NotFoundPage';
@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="movies" element={<MoviesPage />} />
-          {/* <Route path="movies/:moviesId" element={<MovieDetailsPage />} /> */}
+          <Route path="movies/:movieId" element={<MovieDetailsPage />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
@@ -23,12 +23,6 @@ function App() {
 }
 
 export default App;
-
-// /trending/get-trending список самых популярных фильмов на сегодня для создания коллекции на главной странице.
-// /search/search-movies поиск кинофильма по ключевому слову на странице фильмов.
-// /movies/get-movie-details запрос полной информации о фильме для страницы кинофильма.
-// /movies/get-movie-credits запрос информации о актёрском составе для страницы кинофильма.
-// /movies/get-movie-reviews запрос обзоров для страницы кинофильма.
 
 // Маршруты
 // В приложении должны быть следующие маршруты. Если пользователь зашел по несуществующему маршруту, его необходимо перенаправлять на домашнюю страницу.
