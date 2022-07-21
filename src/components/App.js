@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import AppBar from './AppBar';
-import Container from './Container';
+import Layout from './LayoutContainer';
 import HomePage from './HomePage';
 import MovieDetailsPage from './MovieDetailsPage';
 import MoviesPage from './MoviesPage';
@@ -9,19 +8,14 @@ import NotFoundPage from './NotFoundPage';
 function App() {
   return (
     <>
-      <Container>
-        <AppBar />
-
-        <Routes>
-          <Route index path="/" element={<HomePage />} />
-
-          <Route path="/movies" element={<MoviesPage />} />
-
-          <Route path="/movies/:moviesId" element={<MovieDetailsPage />} />
-
-          <Route element={<NotFoundPage />} />
-        </Routes>
-      </Container>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route element={<HomePage />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:moviesId" element={<MovieDetailsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
     </>
   );
 }
