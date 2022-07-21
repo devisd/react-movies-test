@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './LayoutContainer';
 import HomePage from './HomePage';
-import MovieDetailsPage from './MovieDetailsPage';
+// import MovieDetailsPage from './MovieDetailsPage';
 import MoviesPage from './MoviesPage';
+import About from './About';
 import NotFoundPage from './NotFoundPage';
 
 function App() {
@@ -10,9 +11,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="movies" element={<MoviesPage />} />
-          <Route path="movies/:moviesId" element={<MovieDetailsPage />} />
+          {/* <Route path="movies/:moviesId" element={<MovieDetailsPage />} /> */}
+          <Route path="about" element={<About />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
