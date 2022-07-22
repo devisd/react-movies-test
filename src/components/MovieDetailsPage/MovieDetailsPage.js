@@ -1,20 +1,31 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import PageHeading from 'components/PageHeading';
 import * as fetchMovies from '../../services/movies-api';
 import css from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     fetchMovies.fetchOnMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
+  const goBack = () => navigate(-1);
+  const goHome = () => navigate('/');
+
   return (
     <>
-      <PageHeading text="Информация о фильме" />
+      <PageHeading text="Информация о кино" />
+
+      <button className={css.movie_details_btn} type="button" onClick={goBack}>
+        Назад
+      </button>
+      <button className={css.movie_details_btn} type="button" onClick={goHome}>
+        На главную
+      </button>
 
       {movie && (
         <>

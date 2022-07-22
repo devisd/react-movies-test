@@ -1,22 +1,20 @@
 import PageHeading from '../PageHeading';
+import css from './About.module.css';
 
 function About() {
   return (
     <>
-      <PageHeading text="О нас" />
-
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vel velit
-        nihil illo est! Quos cum rerum dolores voluptates odio iste est nam
-        excepturi placeat eligendi voluptatibus a illo eos ipsam, necessitatibus
-        quo at quae pariatur et asperiores odit! Quasi sunt odit omnis at
-        deserunt placeat ipsa earum dignissimos magni voluptatum quisquam veniam
-        libero qui fugit accusantium cum ratione, facilis tempore in!
-        Voluptates, minus nesciunt sed optio voluptate et quae accusamus est
-        eos, dolorum quibusdam dolorem debitis perferendis voluptas rem quos
-        eius ab, commodi cumque dolor. Repellendus porro impedit, enim
-        temporibus quibusdam eum natus corporis id? Ducimus fugit consequatur
-        consequuntur.
+      <PageHeading text="О приложении" />
+      <h2 className={css.about_title}>Приложение для поиска Кино</h2>
+      <p className={css.about_text}>
+        # На главной странице отображается кино, находящееся в трендах.
+      </p>
+      <p className={css.about_text}>
+        # На странице Movies реализован поиск кинофильма.
+      </p>
+      <p className={css.about_text}>
+        # По клику на карточку кино открывается детальная информация о нем. Там
+        вы можете изучить актерский состав и ознакомится с ревью о кино.
       </p>
     </>
   );

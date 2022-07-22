@@ -19,10 +19,10 @@ export function fetchOnTrending() {
 }
 
 // поиск кинофильма по ключевому слову на странице фильмов.
-export function fetchOnSearchMovies() {
+export function fetchOnSearchMovies(searchQuery) {
   return fetchMovies(
-    `${BASE_URL}/search/movie?api_key=${KEY}&language=en-US&page=1&include_adult=false`
-  );
+    `${BASE_URL}/search/movie?api_key=${KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false`
+  ).then(response => response.results);
 }
 
 // запрос полной информации о фильме для страницы кинофильма.
@@ -30,8 +30,6 @@ export function fetchOnMovieDetails(movieId) {
   return fetchMovies(
     `${BASE_URL}/movie/${movieId}?api_key=${KEY}&language=en-US`
   );
-
-  // `${BASE_URL}/movie/${movieId}?api_key=${KEY}&language=en-US`
 }
 
 // запрос информации о актёрском составе для страницы кинофильма.

@@ -1,0 +1,14 @@
+.about_title {
+  font-weight: 600;
+  color: #2a363b;
+  font-size: 25px;
+  text-align: center;
+}
+
+.about_text {
+  padding: 0 20px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 16px;
+  margin-top: 15px;
+}

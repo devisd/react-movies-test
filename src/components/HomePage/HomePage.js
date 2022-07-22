@@ -1,94 +1,36 @@
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PageHeading from '../PageHeading';
+import * as fetchMovies from '../../services/movies-api';
+
 import css from './HomePage.module.css';
 
 export default function HomePage() {
+  const [movies, setMovies] = useState(null);
+
+  useEffect(() => {
+    fetchMovies.fetchOnTrending().then(setMovies);
+  }, []);
+
   return (
     <>
       <PageHeading text="Добро пожаловать" />
 
-      <p className={css.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vel velit
-        nihil illo est! Quos cum rerum dolores voluptates odio iste est nam
-        excepturi placeat eligendi voluptatibus a illo eos ipsam, necessitatibus
-        quo at quae pariatur et asperiores odit! Quasi sunt odit omnis at
-        deserunt placeat ipsa earum dignissimos magni voluptatum quisquam veniam
-        libero qui fugit accusantium cum ratione, facilis tempore in!
-        Voluptates, minus nesciunt sed optio voluptate et quae accusamus est
-        eos, dolorum quibusdam dolorem debitis perferendis voluptas rem quos
-        eius ab, commodi cumque dolor. Repellendus porro impedit, enim
-        temporibus quibusdam eum natus corporis id? Ducimus fugit consequatur
-        consequuntur.
-      </p>
-
-      <p className={css.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vel velit
-        nihil illo est! Quos cum rerum dolores voluptates odio iste est nam
-        excepturi placeat eligendi voluptatibus a illo eos ipsam, necessitatibus
-        quo at quae pariatur et asperiores odit! Quasi sunt odit omnis at
-        deserunt placeat ipsa earum dignissimos magni voluptatum quisquam veniam
-        libero qui fugit accusantium cum ratione, facilis tempore in!
-        Voluptates, minus nesciunt sed optio voluptate et quae accusamus est
-        eos, dolorum quibusdam dolorem debitis perferendis voluptas rem quos
-        eius ab, commodi cumque dolor. Repellendus porro impedit, enim
-        temporibus quibusdam eum natus corporis id? Ducimus fugit consequatur
-        consequuntur.
-      </p>
-
-      <p className={css.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vel velit
-        nihil illo est! Quos cum rerum dolores voluptates odio iste est nam
-        excepturi placeat eligendi voluptatibus a illo eos ipsam, necessitatibus
-        quo at quae pariatur et asperiores odit! Quasi sunt odit omnis at
-        deserunt placeat ipsa earum dignissimos magni voluptatum quisquam veniam
-        libero qui fugit accusantium cum ratione, facilis tempore in!
-        Voluptates, minus nesciunt sed optio voluptate et quae accusamus est
-        eos, dolorum quibusdam dolorem debitis perferendis voluptas rem quos
-        eius ab, commodi cumque dolor. Repellendus porro impedit, enim
-        temporibus quibusdam eum natus corporis id? Ducimus fugit consequatur
-        consequuntur.
-      </p>
-
-      <p className={css.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vel velit
-        nihil illo est! Quos cum rerum dolores voluptates odio iste est nam
-        excepturi placeat eligendi voluptatibus a illo eos ipsam, necessitatibus
-        quo at quae pariatur et asperiores odit! Quasi sunt odit omnis at
-        deserunt placeat ipsa earum dignissimos magni voluptatum quisquam veniam
-        libero qui fugit accusantium cum ratione, facilis tempore in!
-        Voluptates, minus nesciunt sed optio voluptate et quae accusamus est
-        eos, dolorum quibusdam dolorem debitis perferendis voluptas rem quos
-        eius ab, commodi cumque dolor. Repellendus porro impedit, enim
-        temporibus quibusdam eum natus corporis id? Ducimus fugit consequatur
-        consequuntur.
-      </p>
-
-      <p className={css.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vel velit
-        nihil illo est! Quos cum rerum dolores voluptates odio iste est nam
-        excepturi placeat eligendi voluptatibus a illo eos ipsam, necessitatibus
-        quo at quae pariatur et asperiores odit! Quasi sunt odit omnis at
-        deserunt placeat ipsa earum dignissimos magni voluptatum quisquam veniam
-        libero qui fugit accusantium cum ratione, facilis tempore in!
-        Voluptates, minus nesciunt sed optio voluptate et quae accusamus est
-        eos, dolorum quibusdam dolorem debitis perferendis voluptas rem quos
-        eius ab, commodi cumque dolor. Repellendus porro impedit, enim
-        temporibus quibusdam eum natus corporis id? Ducimus fugit consequatur
-        consequuntur.
-      </p>
-
-      <p className={css.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex vel velit
-        nihil illo est! Quos cum rerum dolores voluptates odio iste est nam
-        excepturi placeat eligendi voluptatibus a illo eos ipsam, necessitatibus
-        quo at quae pariatur et asperiores odit! Quasi sunt odit omnis at
-        deserunt placeat ipsa earum dignissimos magni voluptatum quisquam veniam
-        libero qui fugit accusantium cum ratione, facilis tempore in!
-        Voluptates, minus nesciunt sed optio voluptate et quae accusamus est
-        eos, dolorum quibusdam dolorem debitis perferendis voluptas rem quos
-        eius ab, commodi cumque dolor. Repellendus porro impedit, enim
-        temporibus quibusdam eum natus corporis id? Ducimus fugit consequatur
-        consequuntur.
-      </p>
+      <ul className={css.movie_list}>
+        {movies &&
+          movies.map(movie => (
+            <li className={css.movie_item} key={movie.id}>
+              <Link className={css.movie_link} to={`/movies/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  width="320"
+                />
+                {movie.title}
+              </Link>
+            </li>
+          ))}
+      </ul>
     </>
   );
 }

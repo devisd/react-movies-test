@@ -1,3 +1,35 @@
-.text {
-  margin-bottom: 16px;
+.movie_list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.movie_item {
+  transition: all 250ms ease-in-out;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.movie_item img {
+  border-radius: 10px;
+}
+
+.movie_link {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.movie_link:hover,
+.movie_link:focus {
+  color: #2196f3;
+}
+
+.movie_item:hover,
+.movie_item:focus {
+  text-decoration: underline;
+  transform: scale(1.05);
 }
