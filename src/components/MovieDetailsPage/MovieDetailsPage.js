@@ -14,7 +14,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const goBack = () => navigate(-1);
-  const goHome = () => navigate('/');
+  const goHome = () => navigate('/', { replace: true });
 
   return (
     <>

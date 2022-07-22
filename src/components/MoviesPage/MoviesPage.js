@@ -2,16 +2,33 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageHeading from 'components/PageHeading';
 import SearchForm from 'components/SearchForm';
-
+import Loader from 'components/Loader';
 import * as fetchMovies from '../../services/movies-api';
 import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
-    fetchMovies.fetchOnSearchMovies(searchQuery).then(setMovies);
+    if (!searchQuery) {
+      return;
+    }
+
+    const searchMovie = () => {
+      setStatus('pending');
+      fetchMovies.fetchOnSearchMovies(searchQuery).then(result => {
+        setMovies(result);
+        setStatus('resolved');
+      });
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    };
+
+    searchMovie();
   }, [searchQuery]);
 
   const handleInputChange = data => {
@@ -25,8 +42,15 @@ const MoviesPage = () => {
 
       <SearchForm onSubmit={handleInputChange} />
 
+      {status === 'idle' && (
+        <h2 className={css.movie_title}>
+          Введите название кинофильма для поиска
+        </h2>
+      )}
+      {status === 'pending' && <Loader />}
       <ul className={css.movie_list}>
-        {movies &&
+        {status === 'resolved' &&
+          movies &&
           movies.map(movie => (
             <li className={css.movie_item} key={movie.id}>
               <Link className={css.movie_link} to={`${movie.id}`}>

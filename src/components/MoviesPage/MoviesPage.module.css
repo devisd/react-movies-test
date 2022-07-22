@@ -33,3 +33,11 @@
   text-decoration: underline;
   transform: scale(1.05);
 }
+
+.movie_title {
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 25px;
+  color: #2a363b;
+  text-align: center;
+}

@@ -47,7 +47,8 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "react-loader-spinner": "^5.1.5"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
