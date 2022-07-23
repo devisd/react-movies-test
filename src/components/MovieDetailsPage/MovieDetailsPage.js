@@ -45,7 +45,7 @@ const MovieDetailsPage = () => {
                 </li>
               ))}
             </ul>
-            <h2 className={css.movie_details_subtitle}>Owerview</h2>
+            <h2 className={css.movie_details_subtitle}>Overview</h2>
             <p className={css.movie_details_text}>{movie.overview}</p>
             <p className={css.movie_details_text}>
               Release date: {movie.release_date}
@@ -58,7 +58,7 @@ const MovieDetailsPage = () => {
               Cast
             </NavLink>
             <NavLink to={`crew`} className={css.movie_details_navlink}>
-              Crew
+              Film crew
             </NavLink>
             <NavLink to={`reviews`} className={css.movie_details_navlink}>
               Rewiew

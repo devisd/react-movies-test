@@ -13,7 +13,7 @@ const Crew = () => {
 
   return (
     <div className={css.Crew}>
-      {crews && <h2 className={css.Crew__title}>Crew</h2>}
+      {crews && <h2 className={css.Crew__title}>Film crew</h2>}
       <ul className={css.Crew__container}>
         {crews &&
           crews.map(el => (
