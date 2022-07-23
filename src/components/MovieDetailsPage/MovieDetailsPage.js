@@ -18,29 +18,40 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <PageHeading text="Информация о кино" />
+      <PageHeading text="Movie Details" />
 
       <button className={css.movie_details_btn} type="button" onClick={goBack}>
-        Назад
+        Go back
       </button>
       <button className={css.movie_details_btn} type="button" onClick={goHome}>
-        На главную
+        Go Homepage
       </button>
 
       {movie && (
-        <>
+        <div className={css.movie_details_container}>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
             width="320"
           />
-          <h2>{movie.title}</h2>
-          <p className={css.movie_details_text}>Budget: {movie.budget}$</p>
-          <p className={css.movie_details_text}>{movie.overview}</p>
-          <a href={movie.homepage} className={css.movie_details_link}>
-            {movie.homepage}
-          </a>
-        </>
+          <div className={css.movie_details_descr_container}>
+            <h2 className={css.movie_details_title}>{movie.title}</h2>
+            <ul className={css.genres_list}>
+              Genres:
+              {movie.genres.map(el => (
+                <li className={css.genres_item}>{el.name}</li>
+              ))}
+            </ul>
+            <h2 className={css.movie_details_subtitle}>Owerview</h2>
+            <p className={css.movie_details_text}>{movie.overview}</p>
+            <p className={css.movie_details_text}>
+              Release date: {movie.release_date}
+            </p>
+            <a href={movie.homepage} className={css.movie_details_link}>
+              {movie.homepage}
+            </a>
+          </div>
+        </div>
       )}
     </>
   );

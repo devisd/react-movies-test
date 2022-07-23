@@ -26,7 +26,13 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      <footer className={css.footer}>&copy; BOJU TeaM 2022</footer>
+      <footer className={css.footer}>
+        &copy;
+        <a href="https://github.com/devisd" className={css.footer_link}>
+          DevisD.
+        </a>
+        2022
+      </footer>
     </>
   );
 };

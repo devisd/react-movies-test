@@ -38,14 +38,12 @@ const MoviesPage = () => {
 
   return (
     <>
-      <PageHeading text="Поиск кинофильма" />
+      <PageHeading text="Movie search" />
 
       <SearchForm onSubmit={handleInputChange} />
 
       {status === 'idle' && (
-        <h2 className={css.movie_title}>
-          Введите название кинофильма для поиска
-        </h2>
+        <h2 className={css.movie_title}>Enter movie title to search</h2>
       )}
       {status === 'pending' && <Loader />}
       <ul className={css.movie_list}>

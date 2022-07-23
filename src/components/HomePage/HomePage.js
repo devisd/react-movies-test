@@ -14,7 +14,7 @@ export default function HomePage() {
 
   return (
     <>
-      <PageHeading text="Добро пожаловать" />
+      <PageHeading text="Trends of the week" />
 
       <ul className={css.movie_list}>
         {movies &&

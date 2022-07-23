@@ -18,15 +18,29 @@
   color: #ffffff;
 }
 
+.movie_details_container {
+  display: flex;
+}
+
+.movie_details_descr_container {
+  margin-left: 30px;
+  flex-direction: column;
+}
+
+.movie_details_title {
+  text-align: center;
+  color: #2a363b;
+  margin-bottom: 26px;
+}
+
 .movie_details_text {
   font-weight: 500;
   color: #2a363b;
   font-size: 14px;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .movie_details_link {
-  margin-top: 15px;
   display: inline-block;
   text-decoration: none;
   color: #2a363b;
@@ -35,4 +49,23 @@
 .movie_details_link:hover,
 .movie_details_link:focus {
   color: #2196f3;
+}
+
+.genres_list {
+  display: flex;
+  font-weight: 700;
+  color: #2a363b;
+}
+
+.genres_item {
+  margin: 0 3px;
+  font-weight: 400;
+}
+
+.movie_details_subtitle {
+  font-weight: 700;
+  font-size: 18px;
+  color: #2a363b;
+  text-align: center;
+  margin: 30px 0 10px 0;
 }

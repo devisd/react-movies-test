@@ -27,7 +27,7 @@ const SearchForm = ({ onSubmit }) => {
           onChange={handleChange}
           type="text"
           autoComplete="off"
-          placeholder="Search movie"
+          placeholder="search..."
         />
       </form>
     </div>
