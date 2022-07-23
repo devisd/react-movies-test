@@ -36,12 +36,20 @@ export function fetchOnMovieDetails(movieId) {
 export function fetchOnMovieCredits(movieId) {
   return fetchMovies(
     `${BASE_URL}/movie/${movieId}/credits?api_key=${KEY}&language=en-US`
-  );
+  ).then(response => response.cast);
 }
 
 // запрос обзоров для страницы кинофильма.
 export function fetchOnMovieReviews(movieId) {
   return fetchMovies(
     `${BASE_URL}/movie/${movieId}/reviews?api_key=${KEY}&language=en-US&page=1`
-  );
+  ).then(response => response.results);
+}
+
+/// BONUS !!
+// запрос информации о съемочной группе для страницы кинофильма.
+export function fetchOnMovieCrews(movieId) {
+  return fetchMovies(
+    `${BASE_URL}/movie/${movieId}/credits?api_key=${KEY}&language=en-US`
+  ).then(response => response.crew);
 }

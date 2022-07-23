@@ -7,6 +7,7 @@ import About from './About';
 import NotFoundPage from './NotFoundPage';
 import Cast from './Cast';
 import Reviews from './Reviews';
+import Crew from './Crew';
 
 function App() {
   return (
@@ -15,9 +16,11 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="movies" element={<MoviesPage />} />
-          <Route path="movies/:movieId" element={<MovieDetailsPage />} />
-          <Route path="movies/:movieId/cast" element={<Cast />} />
-          <Route path="movies/:movieId/reviews" element={<Reviews />} />
+          <Route path="movies/:movieId" element={<MovieDetailsPage />}>
+            <Route index path="cast" element={<Cast />} />
+            <Route index path="crew" element={<Crew />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
           <Route path="about" element={<About />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

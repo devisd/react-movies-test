@@ -1,7 +1,35 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import * as fetchMovies from '../../services/movies-api';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
-  return <h2>Reviews</h2>;
+  const { movieId } = useParams();
+  const [reviews, setReviews] = useState(null);
+
+  useEffect(() => {
+    fetchMovies.fetchOnMovieReviews(movieId).then(setReviews);
+  }, [movieId]);
+
+  return (
+    <div className={css.Reviews}>
+      {reviews && <h2 className={css.Reviews__title}>Reviews</h2>}
+      <ul>
+        {reviews &&
+          reviews.map(el => (
+            <li key={el.id} className={css.Reviews__item}>
+              <h3 className={css.Reviews__author_name}>
+                {el.author} ({el.author_details.username})
+              </h3>
+              <p className={css.Reviews__text}>{el.content}</p>
+              <a href={el.url} className={css.Reviews__link}>
+                {el.url}
+              </a>
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
 };
 
 export default Reviews;

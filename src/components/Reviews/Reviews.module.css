@@ -1,0 +1,35 @@
+.Reviews {
+  margin: 0 auto;
+  color: #2a363b;
+}
+
+.Reviews__title {
+  text-align: center;
+  font-weight: 800;
+}
+
+.Reviews__author_name {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.Reviews__item {
+  margin-top: 20px;
+}
+
+.Reviews__text {
+  font-size: 14px;
+  padding-left: 15px;
+}
+
+.Reviews__link {
+  display: block;
+  text-align: right;
+  color: #2a363b;
+  cursor: pointer;
+}
+
+.Reviews__link:hover,
+.Reviews__link:focus {
+  color: #2196f3;
+}

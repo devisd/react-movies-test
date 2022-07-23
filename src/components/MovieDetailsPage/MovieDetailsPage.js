@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
 import PageHeading from 'components/PageHeading';
 import * as fetchMovies from '../../services/movies-api';
 import css from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+  console.log('movieId => ', movieId);
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
 
@@ -39,7 +40,9 @@ const MovieDetailsPage = () => {
             <ul className={css.genres_list}>
               Genres:
               {movie.genres.map(el => (
-                <li className={css.genres_item}>{el.name}</li>
+                <li className={css.genres_item} key={el.id}>
+                  {el.name}
+                </li>
               ))}
             </ul>
             <h2 className={css.movie_details_subtitle}>Owerview</h2>
@@ -50,9 +53,21 @@ const MovieDetailsPage = () => {
             <a href={movie.homepage} className={css.movie_details_link}>
               {movie.homepage}
             </a>
+            <br />
+            <NavLink to={`cast`} className={css.movie_details_navlink}>
+              Cast
+            </NavLink>
+            <NavLink to={`crew`} className={css.movie_details_navlink}>
+              Crew
+            </NavLink>
+            <NavLink to={`reviews`} className={css.movie_details_navlink}>
+              Rewiew
+            </NavLink>
           </div>
         </div>
       )}
+      <hr />
+      <Outlet />
     </>
   );
 };

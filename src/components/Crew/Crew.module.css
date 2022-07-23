@@ -1,0 +1,32 @@
+.Crew {
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.Crew__title {
+  text-align: center;
+  font-weight: 800;
+  color: #2a363b;
+}
+
+.Crew__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.Crew__item {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: calc(100% / 2 - 30px);
+  max-width: 150px;
+  color: #2a363b;
+}
+
+.Crew__name {
+  font-size: 16px;
+}
+
+.Crew__description {
+  font-size: 14px;
+}
