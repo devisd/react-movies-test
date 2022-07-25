@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
 // import PageHeading from 'components/PageHeading';
 import * as fetchMovies from '../../services/movies-api';
 import css from './MovieDetailsPage.module.css';
@@ -9,33 +10,28 @@ const PageHeading = lazy(() =>
     '../PageHeading/PageHeading' /* webpackChunkName: "page-header-text" */
   )
 );
-const Loader = lazy(() =>
-  import('../Loader/Loader' /* webpackChunkName: "loader" */)
-);
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  console.log('movieId => ', movieId);
-  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     fetchMovies.fetchOnMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
-  const goBack = () => navigate(-1);
-  const goHome = () => navigate('/', { replace: true });
+  const goBack = location.state?.from.pathname ?? '/';
 
   return (
     <>
       <PageHeading text="Movie Details" />
 
-      <button className={css.movie_details_btn} type="button" onClick={goBack}>
+      <Link className={css.movie_details_btn} to={goBack}>
         Go back
-      </button>
-      <button className={css.movie_details_btn} type="button" onClick={goHome}>
+      </Link>
+      <Link className={css.movie_details_btn} to={'/'}>
         Go Homepage
-      </button>
+      </Link>
 
       {movie && (
         <div className={css.movie_details_container}>
@@ -76,7 +72,11 @@ const MovieDetailsPage = () => {
         </div>
       )}
       <hr />
-      <Suspense fallback={<Loader />}>
+      <Suspense
+        fallback={
+          <h3 className={css.movie_details_title}>Loading content ...</h3>
+        }
+      >
         <Outlet />
       </Suspense>
     </>

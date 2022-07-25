@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // import PageHeading from '../PageHeading';
 import * as fetchMovies from '../../services/movies-api';
 import css from './HomePage.module.css';
@@ -8,6 +8,7 @@ const PageHeading = lazy(() => import('../PageHeading/PageHeading'));
 
 export default function HomePage() {
   const [movies, setMovies] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     fetchMovies.fetchOnTrending().then(setMovies);
@@ -21,7 +22,11 @@ export default function HomePage() {
         {movies &&
           movies.map(movie => (
             <li className={css.movie_item} key={movie.id}>
-              <Link className={css.movie_link} to={`/movies/${movie.id}`}>
+              <Link
+                className={css.movie_link}
+                to={`/movies/${movie.id}`}
+                state={{ from: location }}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.title}

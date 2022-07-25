@@ -9,6 +9,10 @@
   color: #2a363b;
 }
 
+.Crew__error {
+  text-align: center;
+}
+
 .Crew__container {
   display: flex;
   flex-wrap: wrap;
