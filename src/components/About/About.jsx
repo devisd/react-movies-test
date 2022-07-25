@@ -1,5 +1,8 @@
-import PageHeading from '../PageHeading';
+import { lazy } from 'react';
+// import PageHeading from '../PageHeading';
 import css from './About.module.css';
+
+const PageHeading = lazy(() => import('../PageHeading/PageHeading'));
 
 function About() {
   return (

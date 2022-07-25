@@ -1,8 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
-import PageHeading from 'components/PageHeading';
+// import PageHeading from 'components/PageHeading';
 import * as fetchMovies from '../../services/movies-api';
 import css from './MovieDetailsPage.module.css';
+
+const PageHeading = lazy(() =>
+  import(
+    '../PageHeading/PageHeading' /* webpackChunkName: "page-header-text" */
+  )
+);
+const Loader = lazy(() =>
+  import('../Loader/Loader' /* webpackChunkName: "loader" */)
+);
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -67,7 +76,9 @@ const MovieDetailsPage = () => {
         </div>
       )}
       <hr />
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

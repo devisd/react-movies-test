@@ -8,6 +8,10 @@
   font-weight: 800;
 }
 
+.Reviews__error {
+  text-align: center;
+}
+
 .Reviews__author_name {
   font-size: 16px;
   margin-bottom: 5px;

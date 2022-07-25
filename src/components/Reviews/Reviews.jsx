@@ -13,7 +13,13 @@ const Reviews = () => {
 
   return (
     <div className={css.Reviews}>
-      {reviews && <h2 className={css.Reviews__title}>Reviews</h2>}
+      {reviews.length === 0 ? (
+        <h2 className={css.Reviews__error}>
+          Sorry, but there are no reviews yet
+        </h2>
+      ) : (
+        <h2 className={css.Reviews__title}>Reviews</h2>
+      )}
       <ul>
         {reviews &&
           reviews.map(el => (
