@@ -58,7 +58,7 @@ const MoviesPage = () => {
               <Link
                 className={css.movie_link}
                 to={`${movie.id}`}
-                state={{ movies, from: location }}
+                state={{ from: location.pathname }}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

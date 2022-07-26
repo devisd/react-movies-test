@@ -11,31 +11,36 @@ const Reviews = () => {
     fetchMovies.fetchOnMovieReviews(movieId).then(setReviews);
   }, [movieId]);
 
-  return (
-    <div className={css.Reviews}>
-      <h2 className={css.Reviews__title}>Reviews</h2>
-      {reviews.length === 0 ? (
+  if (reviews.length === 0) {
+    return (
+      <div className={css.Reviews}>
+        <h2 className={css.Reviews__title}>Reviews</h2>
+
         <h2 className={css.Reviews__error}>
           Sorry, but there are no reviews yet
         </h2>
-      ) : (
+      </div>
+    );
+  } else {
+    return (
+      <div className={css.Reviews}>
+        <h2 className={css.Reviews__title}>Reviews</h2>
         <ul>
-          {reviews &&
-            reviews.map(el => (
-              <li key={el.id} className={css.Reviews__item}>
-                <h3 className={css.Reviews__author_name}>
-                  {el.author} ({el.author_details.username})
-                </h3>
-                <p className={css.Reviews__text}>{el.content}</p>
-                <a href={el.url} className={css.Reviews__link}>
-                  {el.url}
-                </a>
-              </li>
-            ))}
+          {reviews.map(el => (
+            <li key={el.id} className={css.Reviews__item}>
+              <h3 className={css.Reviews__author_name}>
+                {el.author} ({el.author_details.username})
+              </h3>
+              <p className={css.Reviews__text}>{el.content}</p>
+              <a href={el.url} className={css.Reviews__link}>
+                {el.url}
+              </a>
+            </li>
+          ))}
         </ul>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 };
 
 export default Reviews;

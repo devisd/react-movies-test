@@ -15,21 +15,23 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     fetchMovies.fetchOnMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
-  const goBack = location.state?.from.pathname ?? '/';
+  const goBack = location.state?.from ?? '/';
+  console.log('goBack => ', goBack);
 
   return (
     <>
       <PageHeading text="Movie Details" />
 
-      <Link className={css.movie_details_btn} to={goBack}>
+      <Link className={css.movie_details_btn} to={goBack} replace={true}>
         Go back
       </Link>
-      <Link className={css.movie_details_btn} to={'/'}>
+      <Link className={css.movie_details_btn} to={'/'} replace={true}>
         Go Homepage
       </Link>
 
@@ -59,13 +61,25 @@ const MovieDetailsPage = () => {
               {movie.homepage}
             </a>
             <br />
-            <NavLink to={`cast`} className={css.movie_details_navlink}>
+            <NavLink
+              to={`cast`}
+              className={css.movie_details_navlink}
+              state={{ from: location.pathname }}
+            >
               Cast
             </NavLink>
-            <NavLink to={`crew`} className={css.movie_details_navlink}>
+            <NavLink
+              to={`crew`}
+              className={css.movie_details_navlink}
+              state={{ from: location.pathname }}
+            >
               Film crew
             </NavLink>
-            <NavLink to={`reviews`} className={css.movie_details_navlink}>
+            <NavLink
+              to={`reviews`}
+              className={css.movie_details_navlink}
+              state={{ from: location.pathname }}
+            >
               Rewiew
             </NavLink>
           </div>
