@@ -1,17 +1,27 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './SearchForm.module.css';
 
-const SearchForm = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
+const SearchForm = ({ movieQuery, onSubmit }) => {
+  let [searchQuery, setQuery] = useState(movieQuery);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') || '';
 
   const handleChange = e => {
     setQuery(e.target.value);
+
+    if (searchQuery) {
+      setSearchParams({ query: e.target.value });
+    } else {
+      setSearchParams('');
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(query);
+    setSearchParams('');
     setQuery('');
   };
 
@@ -24,7 +34,7 @@ const SearchForm = ({ onSubmit }) => {
 
         <input
           className={css.SearchForm_input}
-          value={query}
+          value={searchQuery}
           onChange={handleChange}
           type="text"
           autoComplete="off"

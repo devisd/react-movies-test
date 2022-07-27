@@ -36,8 +36,9 @@ const MoviesPage = () => {
     searchMovie();
   }, [searchQuery]);
 
-  const handleInputChange = data => {
-    setSearchQuery(data.trim());
+  const handleInputChange = query => {
+    setSearchQuery(query);
+    console.log(query);
     setMovies(null);
   };
 
@@ -45,7 +46,7 @@ const MoviesPage = () => {
     <>
       <PageHeading text="Movie search" />
 
-      <SearchForm onSubmit={handleInputChange} />
+      <SearchForm movieQuery={searchQuery} onSubmit={handleInputChange} />
       {status === 'idle' && (
         <h2 className={css.movie_title}>Enter movie title to search</h2>
       )}
