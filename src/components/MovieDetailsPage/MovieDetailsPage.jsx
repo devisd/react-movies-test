@@ -2,7 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
 // import PageHeading from 'components/PageHeading';
-import * as fetchMovies from '../../services/movies-api';
+import { fetchOnMovieDetails } from '../../services/movies-api';
 import css from './MovieDetailsPage.module.css';
 
 const PageHeading = lazy(() =>
@@ -18,20 +18,20 @@ const MovieDetailsPage = () => {
   console.log(location);
 
   useEffect(() => {
-    fetchMovies.fetchOnMovieDetails(movieId).then(setMovie);
+    fetchOnMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
-  const goBack = location.state?.from ?? '/';
+  const goBack = location.state?.from || '/';
   console.log('goBack => ', goBack);
 
   return (
     <>
       <PageHeading text="Movie Details" />
 
-      <Link className={css.movie_details_btn} to={goBack} replace={true}>
+      <Link className={css.movie_details_btn} to={goBack}>
         Go back
       </Link>
-      <Link className={css.movie_details_btn} to={'/'} replace={true}>
+      <Link className={css.movie_details_btn} to={'/'}>
         Go Homepage
       </Link>
 

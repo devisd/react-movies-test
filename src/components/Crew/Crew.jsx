@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import * as fetchMovies from '../../services/movies-api';
+import { fetchOnMovieCrews } from '../../services/movies-api';
 import css from './Crew.module.css';
 
 const Crew = () => {
@@ -8,7 +8,7 @@ const Crew = () => {
   const [crews, setCrews] = useState([]);
 
   useEffect(() => {
-    fetchMovies.fetchOnMovieCrews(movieId).then(setCrews);
+    fetchOnMovieCrews(movieId).then(setCrews);
   }, [movieId]);
 
   return (

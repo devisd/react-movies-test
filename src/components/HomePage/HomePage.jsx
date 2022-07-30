@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // import PageHeading from '../PageHeading';
-import * as fetchMovies from '../../services/movies-api';
+import { fetchOnTrending } from '../../services/movies-api';
 import css from './HomePage.module.css';
 
 const PageHeading = lazy(() => import('../PageHeading/PageHeading'));
@@ -11,7 +11,7 @@ export default function HomePage() {
   const location = useLocation();
 
   useEffect(() => {
-    fetchMovies.fetchOnTrending().then(setMovies);
+    fetchOnTrending().then(setMovies);
   }, []);
 
   return (

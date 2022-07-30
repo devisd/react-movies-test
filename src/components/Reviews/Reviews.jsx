@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import * as fetchMovies from '../../services/movies-api';
+import { fetchOnMovieReviews } from '../../services/movies-api';
 import css from './Reviews.module.css';
 
 const Reviews = () => {
@@ -8,20 +8,10 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetchMovies.fetchOnMovieReviews(movieId).then(setReviews);
+    fetchOnMovieReviews(movieId).then(setReviews);
   }, [movieId]);
 
-  if (reviews.length === 0) {
-    return (
-      <div className={css.Reviews}>
-        <h2 className={css.Reviews__title}>Reviews</h2>
-
-        <h2 className={css.Reviews__error}>
-          Sorry, but there are no reviews yet
-        </h2>
-      </div>
-    );
-  } else {
+  if (reviews.length !== 0) {
     return (
       <div className={css.Reviews}>
         <h2 className={css.Reviews__title}>Reviews</h2>
@@ -38,6 +28,16 @@ const Reviews = () => {
             </li>
           ))}
         </ul>
+      </div>
+    );
+  } else {
+    return (
+      <div className={css.Reviews}>
+        <h2 className={css.Reviews__title}>Reviews</h2>
+
+        <h2 className={css.Reviews__error}>
+          Sorry, but there are no reviews yet
+        </h2>
       </div>
     );
   }

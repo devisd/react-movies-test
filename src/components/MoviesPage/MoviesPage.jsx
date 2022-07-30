@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 // import PageHeading from 'components/PageHeading';
 // import SearchForm from 'components/SearchForm';
 // import Loader from 'components/Loader';
-import * as fetchMovies from '../../services/movies-api';
+import { fetchOnSearchMovies } from '../../services/movies-api';
 import css from './MoviesPage.module.css';
 
 const PageHeading = lazy(() => import('../PageHeading/PageHeading'));
@@ -23,7 +23,7 @@ const MoviesPage = () => {
 
     const searchMovie = () => {
       setStatus('pending');
-      fetchMovies.fetchOnSearchMovies(searchQuery).then(result => {
+      fetchOnSearchMovies(searchQuery).then(result => {
         setMovies(result);
         setStatus('resolved');
       });

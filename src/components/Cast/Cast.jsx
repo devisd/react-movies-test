@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import * as fetchMovies from '../../services/movies-api';
+import { fetchOnMovieCast } from '../../services/movies-api';
 import css from './Cast.module.css';
 
 const Cast = () => {
@@ -8,15 +8,13 @@ const Cast = () => {
   const [casts, setCasts] = useState([]);
 
   useEffect(() => {
-    fetchMovies.fetchOnMovieCredits(movieId).then(setCasts);
+    fetchOnMovieCast(movieId).then(setCasts);
   }, [movieId]);
 
-  return (
-    <div className={css.Cast}>
-      <h2 className={css.Cast__title}>Cast</h2>
-      {casts.length === 0 ? (
-        <h2 className={css.Cast__error}>Sorry, no cast information</h2>
-      ) : (
+  if (casts.length !== 0) {
+    return (
+      <div className={css.Cast}>
+        <h2 className={css.Cast__title}>Cast</h2>
         <ul className={css.Cast__container}>
           {casts &&
             casts.map(el => (
@@ -33,9 +31,16 @@ const Cast = () => {
               </li>
             ))}
         </ul>
-      )}
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div className={css.Cast}>
+        <h2 className={css.Cast__title}>Cast</h2>
+        <h2 className={css.Cast__error}>Sorry, no cast information</h2>
+      </div>
+    );
+  }
 };
 
 export default Cast;
