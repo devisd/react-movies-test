@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
@@ -21,14 +22,14 @@ const MovieDetailsPage = () => {
     fetchOnMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
-  const goBack = location.state?.from || '/';
-  console.log('goBack => ', goBack);
+  // const goBack = location.state?.from || '/';
+  // console.log('goBack => ', goBack);
 
   return (
     <>
       <PageHeading text="Movie Details" />
 
-      <Link className={css.movie_details_btn} to={goBack}>
+      <Link className={css.movie_details_btn} to={'/movies'}>
         Go back
       </Link>
       <Link className={css.movie_details_btn} to={'/'}>
@@ -61,25 +62,13 @@ const MovieDetailsPage = () => {
               {movie.homepage}
             </a>
             <br />
-            <NavLink
-              to={`cast`}
-              className={css.movie_details_navlink}
-              state={{ from: location.pathname }}
-            >
+            <NavLink to={`cast`} className={css.movie_details_navlink}>
               Cast
             </NavLink>
-            <NavLink
-              to={`crew`}
-              className={css.movie_details_navlink}
-              state={{ from: location.pathname }}
-            >
+            <NavLink to={`crew`} className={css.movie_details_navlink}>
               Film crew
             </NavLink>
-            <NavLink
-              to={`reviews`}
-              className={css.movie_details_navlink}
-              state={{ from: location.pathname }}
-            >
+            <NavLink to={`reviews`} className={css.movie_details_navlink}>
               Rewiew
             </NavLink>
           </div>
@@ -87,9 +76,10 @@ const MovieDetailsPage = () => {
       )}
       <hr />
       <Suspense
-        fallback={
-          <h3 className={css.movie_details_title}>Loading content ...</h3>
-        }
+        // fallback={
+        //   <h3 className={css.movie_details_title}>Loading content ...</h3>
+        // }
+        fallback={<Loader />}
       >
         <Outlet />
       </Suspense>

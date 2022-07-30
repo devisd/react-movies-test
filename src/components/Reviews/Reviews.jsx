@@ -34,7 +34,6 @@ const Reviews = () => {
     return (
       <div className={css.Reviews}>
         <h2 className={css.Reviews__title}>Reviews</h2>
-
         <h2 className={css.Reviews__error}>
           Sorry, but there are no reviews yet
         </h2>

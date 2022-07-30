@@ -21,8 +21,8 @@ const SearchForm = ({ movieQuery, onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(query);
-    setSearchParams('');
-    setQuery('');
+    // setSearchParams('');
+    // setQuery('');
   };
 
   return (

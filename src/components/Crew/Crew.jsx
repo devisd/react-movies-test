@@ -11,29 +11,31 @@ const Crew = () => {
     fetchOnMovieCrews(movieId).then(setCrews);
   }, [movieId]);
 
-  return (
+  if (crews.length !== 0) {
+    return (
+      <div className={css.Crew}>
+        <h2 className={css.Crew__title}>Film crew</h2>
+        <ul className={css.Crew__container}>
+          {crews.map(el => (
+            <li key={el.credit_id} className={css.Crew__item}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
+                alt={el.name}
+                width="50"
+              />
+              <h3 className={css.Crew__name}>{el.name}</h3>
+              <p className={css.Crew__description}>{el.job}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  } else {
     <div className={css.Crew}>
       <h2 className={css.Crew__title}>Film crew</h2>
-      {crews.length === 0 ? (
-        <h2 className={css.Crew__error}>Sorry, no crew information</h2>
-      ) : (
-        <ul className={css.Crew__container}>
-          {crews &&
-            crews.map(el => (
-              <li key={el.credit_id} className={css.Crew__item}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
-                  alt={el.name}
-                  width="50"
-                />
-                <h3 className={css.Crew__name}>{el.name}</h3>
-                <p className={css.Crew__description}>{el.job}</p>
-              </li>
-            ))}
-        </ul>
-      )}
-    </div>
-  );
+      <h2 className={css.Crew__error}>Sorry, no crew information</h2>
+    </div>;
+  }
 };
 
 export default Crew;

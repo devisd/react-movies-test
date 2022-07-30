@@ -16,20 +16,17 @@ const Cast = () => {
       <div className={css.Cast}>
         <h2 className={css.Cast__title}>Cast</h2>
         <ul className={css.Cast__container}>
-          {casts &&
-            casts.map(el => (
-              <li key={el.id} className={css.Cast__item}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
-                  alt={el.name}
-                  width="50"
-                />
-                <h3 className={css.Cast__name}>{el.name}</h3>
-                <p className={css.Cast__description}>
-                  Character: {el.character}
-                </p>
-              </li>
-            ))}
+          {casts.map(el => (
+            <li key={el.id} className={css.Cast__item}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
+                alt={el.name}
+                width="50"
+              />
+              <h3 className={css.Cast__name}>{el.name}</h3>
+              <p className={css.Cast__description}>Character: {el.character}</p>
+            </li>
+          ))}
         </ul>
       </div>
     );
